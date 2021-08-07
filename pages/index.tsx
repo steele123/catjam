@@ -14,7 +14,7 @@ export default function Home({ albums }: Props) {
     <div>
       <SEO title="Amazing unreleased music for free" />
       <main>
-        <div className="flex justify-center items-center pt-16">
+        <div className="flex flex-wrap mx-auto gap-4 max-w-3xl justify-center items-center pt-16 pb-44">
           {albums.map((album) => 
             <AlbumCard key={album.name} album={album} />
           )}
