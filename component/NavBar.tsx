@@ -7,9 +7,13 @@ export default function NavBar() {
     const { theme, setTheme } = useTheme()
 
     return (
-        <div className="border-b bg-gray-100 dark:bg-lightblack py-2 flex items-center">
+        <div className="border-b bg-gray-100 dark:border-gray-700 dark:bg-lightblack py-2 flex items-center">
             <div className="pl-5 flex-1">
-                <Image src="/catjam.gif" quality={100} width={50} height={50} />
+                <Link href="/">
+                    <a>
+                        <Image alt="" src="/catjam.gif" quality={100} width={50} height={50} />
+                    </a>
+                </Link>
             </div>
             <div className="flex ml-5 flex-none">
                 <Link href="/">

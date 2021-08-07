@@ -83,7 +83,7 @@ export default function MusicPlayer({ song }: Props) {
 
   return (
     <>
-      <div className="flex items-center bg-gray-100 dark:bg-lightblack px-5 py-5 fixed bottom-0 w-full border-t">
+      <div className="flex items-center dark:border-gray-700 bg-gray-100 dark:bg-lightblack px-5 py-5 fixed bottom-0 w-full border-t">
         <div className="flex flex-1 items-center">
           <div>
             <Image

@@ -11,7 +11,7 @@ interface Props {
 export default function AlbumCard({ album }: Props) {
   return (
     <Link href={`/albums/${toSlug(album.name)}`}>
-      <a className="bg-gray-200 transition ease-in-out duration-150 hover:bg-gray-100 flex flex-col w-48">
+      <a className="bg-gray-200 dark:bg-lightblack transition ease-in-out duration-150 hover:bg-gray-100 flex flex-col w-48">
         <div className="mx-auto pt-2">
           <Image
             quality={100}
