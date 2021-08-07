@@ -23,7 +23,7 @@ export default function AlbumPage({ album }: Props) {
 
   return (
     <div className="flex flex-col justify-center mx-auto pb-36">
-      <SEO title={`Listen to ${album.name} for free`} />
+      <SEO title={album.name} />
 
       <div className="flex flex-col justify-center items-center pt-10">
         <div className="flex items-center pb-5">
