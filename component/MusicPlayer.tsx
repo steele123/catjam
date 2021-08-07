@@ -101,7 +101,7 @@ export default function MusicPlayer({ song }: Props) {
               quality={100}
               width={75}
               height={75}
-              src={`/imgs/${playingSong.album ?? "donda"}.png`}
+              src={`/imgs/${toSlug(playingSong.album as string) ?? "donda"}.png`}
             />
           </div>
           <div className="flex flex-col pl-3">
