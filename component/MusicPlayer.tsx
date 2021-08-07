@@ -124,7 +124,7 @@ export default function MusicPlayer({ song }: Props) {
         <div className="flex-1 flex justify-end">
           <VolumeUpIcon width={15} />
           <div className="relative pl-5 flex w-28 items-center">
-            <Slider onChange={onVolumeUpdate} value={volume} />
+            <Slider max={50} onChange={onVolumeUpdate} value={volume} />
           </div>
         </div>
       </div>
