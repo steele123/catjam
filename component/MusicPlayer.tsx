@@ -22,9 +22,9 @@ interface Props {
 }
 
 export default function MusicPlayer({ song }: Props) {
-  const { playingSong, albumName } = useContext(SongContext);
+  const { playingSong } = useContext(SongContext);
   const [playing, isPlaying] = useState(false);
-  const [volume, setVolume] = useState(5);
+  const [volume, setVolume] = useState(10);
   const [songPosition, setSongPosition] = useState(0);
   const audioElement = useRef<HTMLAudioElement>(null);
   const [songLength, setSongLength] = useState(220);
@@ -35,7 +35,7 @@ export default function MusicPlayer({ song }: Props) {
 
     if (firstLoad) {
       setFirstLoad(false)
-      audioElement.current.volume = 0.05;
+      audioElement.current.volume = 0.10;
     } else {
       isPlaying(true)
       audioElement.current.load();
@@ -101,7 +101,7 @@ export default function MusicPlayer({ song }: Props) {
               quality={100}
               width={75}
               height={75}
-              src={`/imgs/${albumName}.png`}
+              src={`/imgs/${playingSong.album ?? "donda"}.png`}
             />
           </div>
           <div className="flex flex-col pl-3">
@@ -140,7 +140,7 @@ export default function MusicPlayer({ song }: Props) {
         onPlaying={onPlaying}
         onEnded={onEnded}
         id="audio"
-        src={`https://res.cloudinary.com/steele/video/upload/v1628360887/donda/${toSlug(playingSong.name)}.mp3`}
+        src={`https://res.cloudinary.com/steele/video/upload/v1628360887/${toSlug(playingSong.album ?? "donda")}/${toSlug(playingSong.name)}.mp3`}
       />
     </>
   );

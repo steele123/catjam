@@ -67,5 +67,50 @@
                 "name": "No Child Left Behind"
             }
         ]
+    },
+    {
+        "name": "Electricity",
+        "author": "Lil Uzi Vert",
+        "songs": [
+            {
+                "name": "Electricity"
+            }
+        ]
+    },
+    {
+        "name": "Green and Purple",
+        "author": "Travis Scott",
+        "songs": [
+            {
+                "name": "Green and Purple"
+            }
+        ]
+    },
+    {
+        "name": "Pissy Pamper",
+        "author": "Playboi Carti",
+        "songs": [
+            {
+                "name": "Pissy Pamper"
+            }
+        ]
+    },
+    {
+        "name": "Serenade",
+        "author": "Travis Scott",
+        "songs": [
+            {
+                "name": "Serenade"
+            }
+        ]
+    },
+    {
+        "name": "The Curse",
+        "author": "Travis Scott",
+        "songs": [
+            {
+                "name": "The Curse"
+            }
+        ]
     }
 ]

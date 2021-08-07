@@ -47,7 +47,7 @@ export default function AlbumPage({ album }: Props) {
             <th className="font-normal">TITLE</th>
           </tr>
           {album.songs.map((song, index) => (
-            <tr onClick={() => onSongClick(song, song.author ? song.author : album.author)} className="hover:bg-gray-100 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
+            <tr onClick={() => onSongClick({album: album.name, ...song}, song.author ? song.author : album.author)} className="hover:bg-gray-100 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
               <th className={`font-normal ${song.name == playingSong.name ? "text-green-600" : ""}`}>{index + 1}</th>
               <th>
                 <div className={song.name == playingSong.name ? "text-green-600" : ""}>{song.name}</div>
