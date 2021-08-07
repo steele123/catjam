@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function AlbumPage({ album }: Props) {
-  const { setSong } = useContext(SongContext)
+  const { setSong, playingSong } = useContext(SongContext)
 
   const onSongClick = (song: Song, author: string) => {
     if (setSong != null) {
@@ -47,10 +47,10 @@ export default function AlbumPage({ album }: Props) {
             <th className="font-normal">TITLE</th>
           </tr>
           {album.songs.map((song, index) => (
-            <tr onClick={() => onSongClick(song, song.author ? song.author : album.author)} className="hover:bg-gray-100 rounded-full cursor-default select-none" key={song.name}>
-              <th className="font-normal">{index}</th>
+            <tr onClick={() => onSongClick(song, song.author ? song.author : album.author)} className="hover:bg-gray-100 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
+              <th className={`font-normal ${song.name == playingSong.name ? "text-green-600" : ""}`}>{index}</th>
               <th>
-                <div>{song.name}</div>
+                <div className={song.name == playingSong.name ? "text-green-600" : ""}>{song.name}</div>
                 <div className="text-gray-400 font-normal text-sm">
                   {song.author ? song.author : album.author}
                 </div>
