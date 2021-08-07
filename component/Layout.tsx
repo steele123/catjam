@@ -9,10 +9,10 @@ interface Props {
 }
 
 export default function Layout({ children }: Props) {
-    const [song, setSong] = useState<Song>({ name: "Moon", author: "Kanye West" })
+    const [song, setSong] = useState<Song>({ name: "Moon", author: "Kanye West", album: "Donda" })
 
   return (
-    <SongContext.Provider value={{ playingSong: song, albumName: "Donda", setSong: setSong }}>
+    <SongContext.Provider value={{ playingSong: song, setSong: setSong }}>
       <NavBar />
       <main>{children}</main>
       <MusicPlayer song={song} />
