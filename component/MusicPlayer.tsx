@@ -72,6 +72,16 @@ export default function MusicPlayer({ song }: Props) {
     }
   };
 
+  const onEnded = () => {
+    isPlaying(false)
+  }
+
+  const onSongPositionChange = (value: number) => {
+    setSongPosition(value)
+    if (audioElement.current == null) return;
+    audioElement.current.currentTime = value
+  }
+
   function formatTime(seconds: number) {
     const m = Math.floor((seconds % 3600) / 60);
     const s = Math.round(seconds % 60);
@@ -112,7 +122,7 @@ export default function MusicPlayer({ song }: Props) {
           <div className="flex text-xs justify-center items-center">
             <div>{formatTime(songPosition)}</div>
             <div className="px-2 w-96 relative">
-              <Slider max={240} value={songPosition} />
+              <Slider onChange={onSongPositionChange} max={songLength} value={songPosition} />
             </div>
             <div>{formatTime(songLength)}</div>
           </div>
@@ -128,6 +138,7 @@ export default function MusicPlayer({ song }: Props) {
         ref={audioElement}
         onTimeUpdate={onProgress}
         onPlaying={onPlaying}
+        onEnded={onEnded}
         id="audio"
         src={`https://res.cloudinary.com/steele/video/upload/v1628360887/donda/${toSlug(playingSong.name)}.mp3`}
       />
