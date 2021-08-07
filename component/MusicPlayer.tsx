@@ -7,9 +7,6 @@ import {
   VolumeUpIcon,
 } from "@heroicons/react/solid";
 import {
-  AudioHTMLAttributes,
-  ClassAttributes,
-  DetailedHTMLProps,
   useEffect,
   useState,
 } from "react";
@@ -17,7 +14,7 @@ import { Song } from "../types/song";
 import { useContext } from "react";
 import { SongContext } from "../lib/song-context";
 import { toSlug } from "../lib/slugger";
-import { Slider } from "@material-ui/core";
+import Slider from "rc-slider";
 import { useRef } from "react";
 
 interface Props {
@@ -47,7 +44,6 @@ export default function MusicPlayer({ song }: Props) {
   }, [playingSong]);
 
   const onPlaying = () => {
-    console.log("okaychamp")
     if (audioElement.current != null) {
       setSongLength(audioElement.current.duration)
     }
@@ -63,10 +59,10 @@ export default function MusicPlayer({ song }: Props) {
     audioElement.current?.pause();
   };
 
-  const onVolumeUpdate = (e: any, value: any) => {
-    setVolume(value);
+  const onVolumeUpdate = (e: number) => {
+    setVolume(e);
     if (audioElement.current != null) {
-      audioElement.current.volume = value / 100;
+      audioElement.current.volume = e / 100;
     }
   };
 
@@ -116,14 +112,14 @@ export default function MusicPlayer({ song }: Props) {
           <div className="flex text-xs justify-center items-center">
             <div>{formatTime(songPosition)}</div>
             <div className="px-2 w-96 relative">
-              <Slider disabled={true} max={240} value={songPosition} />
+              <Slider max={240} value={songPosition} />
             </div>
             <div>{formatTime(songLength)}</div>
           </div>
         </div>
         <div className="flex-1 flex justify-end">
           <VolumeUpIcon width={15} />
-          <div className="relative pl-5 flex w-28 items-center">
+          <div className="relative pl-5 flex w-28 items-center text-green-500">
             <Slider max={50} onChange={onVolumeUpdate} value={volume} />
           </div>
         </div>

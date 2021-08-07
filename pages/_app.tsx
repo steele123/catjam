@@ -1,5 +1,6 @@
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import "tailwindcss/tailwind.css";
+import '../styles/sliders.css'
 import Layout from "../component/Layout";
 import Head from "next/head";
 import { ThemeProvider } from "next-themes";
