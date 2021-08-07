@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'aot',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: ['./pages/**/*.tsx', './components/*.tsx', './pages/*.tsx'],
   darkMode: 'class',
   theme: {
     extend: {
