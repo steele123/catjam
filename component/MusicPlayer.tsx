@@ -31,10 +31,15 @@ export default function MusicPlayer({ song }: Props) {
   const [songPosition, setSongPosition] = useState(0);
   const audioElement = useRef<HTMLAudioElement>(null);
   const [songLength, setSongLength] = useState(220);
+  const [firstLoad, setFirstLoad] = useState(true)
 
   useEffect(() => {
-    if (audioElement.current != null) {
+    if (audioElement.current == null) return;
+
+    if (firstLoad) {
+      setFirstLoad(false)
       audioElement.current.volume = 0.05;
+    } else {
       isPlaying(true)
       audioElement.current.load();
       audioElement.current.play();
