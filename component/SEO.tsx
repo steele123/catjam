@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function SEO({ title, description }: Props) {
-    const metaDescription = description || "Free high quality unreleased music with a very familar design meant to not be different from what you normally see."
+    const metaDescription = description || "Free high quality unreleased music with a very familar design."
     title = `CatJam - ${title}`
 
   return (
