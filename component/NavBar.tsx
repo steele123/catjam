@@ -15,7 +15,7 @@ export default function NavBar() {
                     </a>
                 </Link>
             </div>
-            <div className="flex ml-5 flex-none">
+            <div className="flex ml-5 flex-none text-lg font-bold">
                 <Link href="/">
                     <a>Home</a>
                 </Link>
