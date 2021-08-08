@@ -28,6 +28,12 @@ export default function MusicPlayer() {
     if (audioElement.current == null) return;
 
     if (firstLoad) {
+      let vol = localStorage.getItem("volume")
+      if (vol == null) {
+        setVolume(10)
+      } else {
+        setVolume(parseInt(vol))
+      }
       setFirstLoad(false);
       audioElement.current.volume = 0.1;
     } else {
@@ -55,6 +61,7 @@ export default function MusicPlayer() {
 
   const onVolumeUpdate = (e: number) => {
     setVolume(e);
+    localStorage.setItem("volume", e.toString());
     if (audioElement.current != null) {
       audioElement.current.volume = e / 100;
     }
