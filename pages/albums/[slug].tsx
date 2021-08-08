@@ -41,16 +41,16 @@ export default function AlbumPage({ album }: Props) {
             </div>
           </div>
         </div>
-        <table className="table-auto w-1/2">
-          <tr className="border-b border-gray-100">
+        <table className="w-1/2">
+          <tr className="border-b border-gray-100 pb-5">
             <th className="font-normal">#</th>
             <th className="font-normal">TITLE</th>
           </tr>
           {album.songs.map((song, index) => (
-            <tr onClick={() => onSongClick({album: album.name, ...song}, song.author ? song.author : album.author)} className="hover:bg-gray-100 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
-              <th className={`font-normal ${song.name == playingSong.name ? "text-green-600" : ""}`}>{index + 1}</th>
+            <tr onClick={() => onSongClick({album: album.name, ...song}, song.author ? song.author : album.author)} className="hover:bg-gray-200 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
+              <th className={`font-normal ${song.name == playingSong.name ? "text-green-600 animate-pulse" : ""}`}>{index + 1}</th>
               <th>
-                <div className={song.name == playingSong.name ? "text-green-600" : ""}>{song.name}</div>
+                <div className={song.name == playingSong.name ? "text-green-600 animate-pulse" : ""}>{song.name}</div>
                 <div className="text-gray-400 font-normal text-sm">
                   {song.author ? song.author : album.author}
                 </div>
