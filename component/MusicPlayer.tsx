@@ -33,7 +33,7 @@ export default function MusicPlayer() {
         setVolume(parseInt(vol))
       }
       setFirstLoad(false);
-      audioElement.current.volume = 0.1;
+      audioElement.current.volume = volume / 200;
     } else {
       isPlaying(true);
       audioElement.current.load();
@@ -179,7 +179,7 @@ export default function MusicPlayer() {
             <VolumeOffIcon width={15} />
           )}
           <div className="relative pl-5 flex w-28 items-center text-green-500">
-            <Slider max={50} onChange={onVolumeUpdate} value={volume} />
+            <Slider max={100} onChange={onVolumeUpdate} value={volume} />
           </div>
         </div>
       </div>
