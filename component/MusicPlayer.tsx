@@ -86,7 +86,7 @@ export default function MusicPlayer() {
 
     if (albumSongs.length == 1) {
     } else {
-      let currentSongIndex = albumSongs.indexOf(playingSong);
+      let currentSongIndex = albumSongs.map((e) => e.name).indexOf(playingSong.name);
       if (currentSongIndex == 0) {
         setSongPosition(0);
         if (audioElement.current != null) {
@@ -104,10 +104,15 @@ export default function MusicPlayer() {
     if (albumSongs.length == 1) {
       return;
     } else {
-      let currentSongIndex = albumSongs.indexOf(playingSong);
+      let currentSongIndex = albumSongs.map((e) => e.name).indexOf(playingSong.name);
+      console.log(`Skipping songs to song ${currentSongIndex}/${albumSongs.length}`)
       if (currentSongIndex + 1 > albumSongs.length) {
+        let nextSong = albumSongs[0];
+        console.log(`Skipping forward to song ${nextSong.name}`)
         setSong(albumSongs[0]);
       } else {
+        let nextSong = albumSongs[currentSongIndex + 1]
+        console.log(`Skipping forward to song ${nextSong.name}`)
         setSong(albumSongs[currentSongIndex + 1]);
       }
     }
