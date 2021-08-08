@@ -41,11 +41,12 @@ export default function AlbumPage({ album }: Props) {
             </div>
           </div>
         </div>
-        <table className="w-1/2">
-          <tr className="border-b border-gray-100 pb-5">
+        <table className="w-1/2 flex-col">
+          <tr className="border-gray-100 border-b w-full">
             <th className="font-normal">#</th>
-            <th className="font-normal">TITLE</th>
+            <th className="font-normal pb-2">TITLE</th>
           </tr>
+          <div className="pb-3"></div>
           {album.songs.map((song, index) => (
             <tr onClick={() => onSongClick({album: album.name, ...song}, song.author ? song.author : album.author)} className="hover:bg-gray-200 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
               <th className={`font-normal ${song.name == playingSong.name ? "text-green-600 animate-pulse" : ""}`}>{index + 1}</th>
