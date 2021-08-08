@@ -17,12 +17,8 @@ import { toSlug } from "../lib/slugger";
 import Slider from "rc-slider";
 import { useRef } from "react";
 
-interface Props {
-  song?: Song;
-}
-
-export default function MusicPlayer({ song }: Props) {
-  const { playingSong } = useContext(SongContext);
+export default function MusicPlayer() {
+  const { playingSong, albumSongs, setSong } = useContext(SongContext);
   const [playing, isPlaying] = useState(false);
   const [volume, setVolume] = useState(10);
   const [songPosition, setSongPosition] = useState(0);
@@ -82,6 +78,39 @@ export default function MusicPlayer({ song }: Props) {
     audioElement.current.currentTime = value
   }
 
+  const onSkipBackward = () => {
+    if (setSong == null) return;
+
+    if (albumSongs.length == 1) {
+
+    } else {
+      let currentSongIndex = albumSongs.indexOf(playingSong)
+      if (currentSongIndex == 0) {
+        setSongPosition(0)
+        if (audioElement.current != null) {
+          audioElement.current.currentTime = 0
+        }
+      } else {
+        setSong(albumSongs[currentSongIndex - 1])
+      }
+    }
+  }
+
+  const onSkipForward = () => {
+    if (setSong == null) return;
+
+    if (albumSongs.length == 1) {
+      return;
+    } else {
+      let currentSongIndex = albumSongs.indexOf(playingSong)
+      if (currentSongIndex + 1 > albumSongs.length) {
+        setSong(albumSongs[0])
+      } else {
+        setSong(albumSongs[currentSongIndex + 1])
+      }
+    }
+  }
+
   function formatTime(seconds: number) {
     const m = Math.floor((seconds % 3600) / 60);
     const s = Math.round(seconds % 60);
@@ -111,13 +140,13 @@ export default function MusicPlayer({ song }: Props) {
         </div>
         <div className="flex-col items-center justify-between flex">
           <div className="flex text-center">
-            <RewindIcon className="text-gray-400" width={25} />
+            <RewindIcon onClick={onSkipBackward} className="text-gray-400" width={25} />
             {playing ? (
               <PauseIcon onClick={onClickPause} width={30} />
             ) : (
               <PlayIcon onClick={onClickPlay} width={30} />
             )}
-            <FastForwardIcon className="text-gray-400" width={25} />
+            <FastForwardIcon onClick={onSkipForward} className="text-gray-400" width={25} />
           </div>
           <div className="flex text-xs justify-center items-center">
             <div>{formatTime(songPosition)}</div>

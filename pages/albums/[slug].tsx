@@ -13,11 +13,23 @@ interface Props {
 }
 
 export default function AlbumPage({ album }: Props) {
-  const { setSong, playingSong } = useContext(SongContext)
+  const { setSong, playingSong, setAlbumSongs } = useContext(SongContext)
 
-  const onSongClick = (song: Song, author: string) => {
+  const onSongClick = (song: Song, author: string, songs: Song[]) => {
+    let newSongs: Song[] = []
+    songs.forEach(newSong => {
+      if (newSong.album == null) {
+        newSong.album = song.album
+      }
+      newSongs.push(newSong)
+    });
+
     if (setSong != null) {
       setSong({ author: author, ...song })
+    }
+
+    if (setAlbumSongs != null) {
+      setAlbumSongs(newSongs)
     }
   }
 
@@ -48,7 +60,7 @@ export default function AlbumPage({ album }: Props) {
           </tr>
           <div className="pb-3"></div>
           {album.songs.map((song, index) => (
-            <tr onClick={() => onSongClick({album: album.name, ...song}, song.author ? song.author : album.author)} className="hover:bg-gray-200 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
+            <tr onClick={() => onSongClick({album: album.name, ...song}, song.author ? song.author : album.author, album.songs)} className="hover:bg-gray-200 dark:hover:bg-gray-300 hover:text-white rounded-full cursor-default select-none" key={song.name}>
               <th className={`font-normal ${song.name == playingSong.name ? "text-green-600 animate-pulse" : ""}`}>{index + 1}</th>
               <th>
                 <div className={song.name == playingSong.name ? "text-green-600 animate-pulse" : ""}>{song.name}</div>

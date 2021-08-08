@@ -4,7 +4,9 @@ import { Song } from "../types/song";
 
 type songContextType = {
     playingSong: Song,
-    setSong: Dispatch<SetStateAction<Song>> | null
+    setSong: Dispatch<SetStateAction<Song>> | null,
+    albumSongs: Song[],
+    setAlbumSongs: Dispatch<SetStateAction<Song[]>> | null
 }
 
 const songContextDefaultValue: songContextType = {
@@ -13,7 +15,9 @@ const songContextDefaultValue: songContextType = {
         author: "Kanye West",
         album: "Donda"
     },
-    setSong: null
+    setSong: null,
+    albumSongs: [],
+    setAlbumSongs: null
 }
 
 export const SongContext = createContext<songContextType>(songContextDefaultValue)
