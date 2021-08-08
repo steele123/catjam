@@ -41,7 +41,7 @@ export default function AlbumPage({ album }: Props) {
             </div>
           </div>
         </div>
-        <table className="table-auto">
+        <table className="table-auto w-1/2">
           <tr className="border-b border-gray-100">
             <th className="font-normal">#</th>
             <th className="font-normal">TITLE</th>
