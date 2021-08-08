@@ -162,17 +162,17 @@ export default function MusicPlayer() {
           <div className="flex text-center">
             <RewindIcon
               onClick={onSkipBackward}
-              className="text-gray-400"
+              className="text-gray-400 hover:text-white"
               width={25}
             />
             {playing ? (
-              <PauseIcon onClick={onClickPause} width={30} />
+              <PauseIcon className="transform hover:scale-110" onClick={onClickPause} width={30} />
             ) : (
-              <PlayIcon onClick={onClickPlay} width={30} />
+              <PlayIcon className="transform hover:scale-110" onClick={onClickPlay} width={30} />
             )}
             <FastForwardIcon
               onClick={onSkipForward}
-              className="text-gray-400"
+              className="text-gray-400 hover:text-white"
               width={25}
             />
           </div>
