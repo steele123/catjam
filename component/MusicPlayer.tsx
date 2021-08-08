@@ -72,7 +72,18 @@ export default function MusicPlayer() {
   };
 
   const onEnded = () => {
-    isPlaying(false);
+    if (setSong == null) return;
+
+    if (albumSongs.length != 0) {
+      let currentIndex = albumSongs.map((e) => e.name).indexOf(playingSong.name);
+      if (currentIndex + 1 > albumSongs.length) {
+        setSong(albumSongs[0])
+      } else {
+        setSong(albumSongs[currentIndex + 1])
+      }
+    } else {
+      isPlaying(false);
+    }
   };
 
   const onSongPositionChange = (value: number) => {
