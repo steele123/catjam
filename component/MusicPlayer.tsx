@@ -5,11 +5,9 @@ import {
   PlayIcon,
   PauseIcon,
   VolumeUpIcon,
+  VolumeOffIcon,
 } from "@heroicons/react/solid";
-import {
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import { Song } from "../types/song";
 import { useContext } from "react";
 import { SongContext } from "../lib/song-context";
@@ -24,16 +22,16 @@ export default function MusicPlayer() {
   const [songPosition, setSongPosition] = useState(0);
   const audioElement = useRef<HTMLAudioElement>(null);
   const [songLength, setSongLength] = useState(220);
-  const [firstLoad, setFirstLoad] = useState(true)
+  const [firstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     if (audioElement.current == null) return;
 
     if (firstLoad) {
-      setFirstLoad(false)
-      audioElement.current.volume = 0.10;
+      setFirstLoad(false);
+      audioElement.current.volume = 0.1;
     } else {
-      isPlaying(true)
+      isPlaying(true);
       audioElement.current.load();
       audioElement.current.play();
     }
@@ -41,9 +39,9 @@ export default function MusicPlayer() {
 
   const onPlaying = () => {
     if (audioElement.current != null) {
-      setSongLength(audioElement.current.duration)
+      setSongLength(audioElement.current.duration);
     }
-  }
+  };
 
   const onClickPlay = () => {
     isPlaying(true);
@@ -69,32 +67,31 @@ export default function MusicPlayer() {
   };
 
   const onEnded = () => {
-    isPlaying(false)
-  }
+    isPlaying(false);
+  };
 
   const onSongPositionChange = (value: number) => {
-    setSongPosition(value)
+    setSongPosition(value);
     if (audioElement.current == null) return;
-    audioElement.current.currentTime = value
-  }
+    audioElement.current.currentTime = value;
+  };
 
   const onSkipBackward = () => {
     if (setSong == null) return;
 
     if (albumSongs.length == 1) {
-
     } else {
-      let currentSongIndex = albumSongs.indexOf(playingSong)
+      let currentSongIndex = albumSongs.indexOf(playingSong);
       if (currentSongIndex == 0) {
-        setSongPosition(0)
+        setSongPosition(0);
         if (audioElement.current != null) {
-          audioElement.current.currentTime = 0
+          audioElement.current.currentTime = 0;
         }
       } else {
-        setSong(albumSongs[currentSongIndex - 1])
+        setSong(albumSongs[currentSongIndex - 1]);
       }
     }
-  }
+  };
 
   const onSkipForward = () => {
     if (setSong == null) return;
@@ -102,14 +99,14 @@ export default function MusicPlayer() {
     if (albumSongs.length == 1) {
       return;
     } else {
-      let currentSongIndex = albumSongs.indexOf(playingSong)
+      let currentSongIndex = albumSongs.indexOf(playingSong);
       if (currentSongIndex + 1 > albumSongs.length) {
-        setSong(albumSongs[0])
+        setSong(albumSongs[0]);
       } else {
-        setSong(albumSongs[currentSongIndex + 1])
+        setSong(albumSongs[currentSongIndex + 1]);
       }
     }
-  }
+  };
 
   function formatTime(seconds: number) {
     const m = Math.floor((seconds % 3600) / 60);
@@ -130,7 +127,9 @@ export default function MusicPlayer() {
               quality={100}
               width={75}
               height={75}
-              src={`/imgs/${toSlug(playingSong.album as string) ?? "donda"}.png`}
+              src={`/imgs/${
+                toSlug(playingSong.album as string) ?? "donda"
+              }.png`}
             />
           </div>
           <div className="flex flex-col pl-3">
@@ -140,24 +139,40 @@ export default function MusicPlayer() {
         </div>
         <div className="flex-col items-center justify-between flex">
           <div className="flex text-center">
-            <RewindIcon onClick={onSkipBackward} className="text-gray-400" width={25} />
+            <RewindIcon
+              onClick={onSkipBackward}
+              className="text-gray-400"
+              width={25}
+            />
             {playing ? (
               <PauseIcon onClick={onClickPause} width={30} />
             ) : (
               <PlayIcon onClick={onClickPlay} width={30} />
             )}
-            <FastForwardIcon onClick={onSkipForward} className="text-gray-400" width={25} />
+            <FastForwardIcon
+              onClick={onSkipForward}
+              className="text-gray-400"
+              width={25}
+            />
           </div>
           <div className="flex text-xs justify-center items-center">
             <div>{formatTime(songPosition)}</div>
             <div className="px-2 w-96 relative">
-              <Slider onChange={onSongPositionChange} max={songLength} value={songPosition} />
+              <Slider
+                onChange={onSongPositionChange}
+                max={songLength}
+                value={songPosition}
+              />
             </div>
             <div>{formatTime(songLength)}</div>
           </div>
         </div>
         <div className="flex-1 flex justify-end">
-          <VolumeUpIcon width={15} />
+          {volume !== 0 ? (
+            <VolumeUpIcon onClick={() => onVolumeUpdate(0)} width={15} />
+          ) : (
+            <VolumeOffIcon width={15} />
+          )}
           <div className="relative pl-5 flex w-28 items-center text-green-500">
             <Slider max={50} onChange={onVolumeUpdate} value={volume} />
           </div>
@@ -169,7 +184,9 @@ export default function MusicPlayer() {
         onPlaying={onPlaying}
         onEnded={onEnded}
         id="audio"
-        src={`https://res.cloudinary.com/steele/video/upload/v1628360887/${toSlug(playingSong.album ?? "donda")}/${toSlug(playingSong.name)}.mp3`}
+        src={`https://res.cloudinary.com/steele/video/upload/v1628360887/${toSlug(
+          playingSong.album ?? "donda"
+        )}/${toSlug(playingSong.name)}.mp3`}
       />
     </>
   );
