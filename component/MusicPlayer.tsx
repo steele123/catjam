@@ -18,7 +18,7 @@ import { useRef } from "react";
 export default function MusicPlayer() {
   const { playingSong, albumSongs, setSong } = useContext(SongContext);
   const [playing, isPlaying] = useState(false);
-  const [volume, setVolume] = useState(10);
+  const [volume, setVolume] = useState(50);
   const [songPosition, setSongPosition] = useState(0);
   const audioElement = useRef<HTMLAudioElement>(null);
   const [songLength, setSongLength] = useState(220);
@@ -29,9 +29,7 @@ export default function MusicPlayer() {
 
     if (firstLoad) {
       let vol = localStorage.getItem("volume")
-      if (vol == null) {
-        setVolume(10)
-      } else {
+      if (vol != null) {
         setVolume(parseInt(vol))
       }
       setFirstLoad(false);
