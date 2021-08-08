@@ -23,11 +23,11 @@ export default function NavBar() {
             </div>
             <div className="flex-1 flex justify-end pr-5">
                 {theme === "dark" ? (
-                    <button className="text-yellow-300 transition ease-in-out duration-1000" onClick={() => setTheme("light")}>
+                    <button className="text-yellow-300 hover:text-white transition ease-in-out duration-1000" onClick={() => setTheme("light")}>
                         <SunIcon width={30} />
                     </button>
                 ): (
-                    <button className="text-gray-700 transition ease-in-out duration-1000" onClick={() => setTheme("dark")}>
+                    <button className="text-gray-700 hover:text-black transition ease-in-out duration-1000" onClick={() => setTheme("dark")}>
                         <MoonIcon width={30} />
                     </button>
                 )}
