@@ -74,7 +74,7 @@ export default function MusicPlayer() {
   const onEnded = () => {
     if (setSong == null) return;
 
-    if (albumSongs.length != 0) {
+    if (albumSongs.length != 1) {
       let currentIndex = albumSongs.map((e) => e.name).indexOf(playingSong.name);
       if (currentIndex + 1 > albumSongs.length) {
         setSong(albumSongs[0])
