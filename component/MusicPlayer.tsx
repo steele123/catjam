@@ -63,7 +63,7 @@ export default function MusicPlayer() {
     setVolume(e);
     localStorage.setItem("volume", e.toString());
     if (audioElement.current != null) {
-      audioElement.current.volume = e / 100;
+      audioElement.current.volume = e / 200;
     }
   };
 
