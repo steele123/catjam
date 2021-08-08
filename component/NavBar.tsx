@@ -15,11 +15,11 @@ export default function NavBar() {
                     </a>
                 </Link>
             </div>
-            <div className="flex ml-5 flex-none text-lg font-bold">
+            <div className="flex ml-5 flex-none text-lg font-bold ease-in-out duration-150 transition">
                 <Link href="/">
-                    <a>Home</a>
+                    <a className="hover:text-gray-700">Home</a>
                 </Link>
-                <a className="pl-5" href="https://github.com/steele123/catjam">Github</a>
+                <a className="pl-5 hover:text-gray-700" href="https://github.com/steele123/catjam">Github</a>
             </div>
             <div className="flex-1 flex justify-end pr-5">
                 {theme === "dark" ? (
